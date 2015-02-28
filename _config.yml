@@ -1,11 +1,9 @@
 # Site settings
-title: Radar Lab Warning Issuer
 email: ethan.nelson@users.noreply.github.com
-description: > # this means to ignore newlines until "baseurl:"
-  A mock weather warning issue console for an undergraduate radar and satellite course.
-baseurl: "" # the subpath of your site, e.g. /blog/
-url: "" # the base hostname & protocol for your site
+description: >
+    N.B.: This is a web app created for a university course, not an operational site.
 permalink: pretty
+github_username: ethan-nelson/radarlabissuer
 
 # Build settings
 markdown: kramdown

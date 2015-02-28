@@ -29,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 		print "<h4 class='panel-title'>";
 		print "<a data-toggle='collapse' data-parent='#accordian' href='#" . $i . "'>";
 
-		print $row['label'] . " Warning at " . $row['radar_time'];
+		print $row['warningtype'] . " Warning at " . $row['radartime'];
 
 		print "</a>";
 		print "</h4>";
@@ -39,8 +39,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 		print "<div class='panel-body'>";
 		print "<div class='col-lg-6'>";
 
-		print "<b>Issued at:</b> " . $row['radar_time'];
-		print "<br /><b>Expires at:</b> " . $row['expiry_time'];
+		print "<b>Issued at:</b> " . $row['radartime'];
+		print "<br /><b>Expires at:</b> " . $row['expirationtime'];
 		if (!empty($row['threat'])) {
 			print "<br /><b>Threat:</b> " . $row['threat'];
 			if ($row['threat'] == 'Severe Hail') {
@@ -51,7 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 		};
 		print "<br /><b>Source:</b> " . $row['source'];
 		print "<br /><b>Movement:</b> " .$row['direction'] . " @ " . $row['speed'] . " kts ";
-		print "<br /><b>Details:</b> " .$row['textbox'];
+		print "<br /><b>Details:</b> " .$row['details'];
 
 		print "</div>";
 		print "<div class='col-lg-6'>";

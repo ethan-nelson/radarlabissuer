@@ -1,6 +1,8 @@
 ---
 layout: page
 title: Warning Generator
+permalink: /
+slug: home
 ---
 <script>
 
@@ -9,7 +11,7 @@ title: Warning Generator
 </script>
 
 <div id="returnvalue"></div>
-<div class="well bs-component col-xs-16">
+<div class="well bs-component col-md-12">
 <form class="form-horizontal" id="stormwarning">
 	<fieldset>
 	<center><legend><h3>Storm Warning Issuer</h3></legend></center>
@@ -132,7 +134,7 @@ title: Warning Generator
 	<div class="form-group">
 		<div class="col-lg-offset-5">
 			<input class="btn btn-default" value="Reset Values" type="button" onClick="ResetData();">
-			<input class="btn btn-danger" value="Issue Warning" type="submit">
+			<input class="btn btn-danger" value="Issue Warning" type="submit" id="submitter" data-loading-text='Issuing...'>
 		</div>
 	</div>
 
@@ -226,6 +228,12 @@ title: Warning Generator
 		polygonid = JSON.stringify(drawnWarning.toGeoJSON());
 	});
 
+	function attribution(){
+	window.alert('Map data: OpenStreetMap contributors (http://openstreetmap.org).\n' +
+		'Imagery: Mapbox (http://mapbox.com).\n' +
+		'For more information, contact the project creator at ethan.nelson@users.noreply.github.com');
+	}
+
 	function ResetData() {
 		document.getElementById("stormwarning").reset();
 
@@ -265,6 +273,7 @@ title: Warning Generator
 
 	$('#stormwarning').submit(function(e) {
 		e.preventDefault();
+		var $btn = $('#submitter').button('loading')
 		var $form = $( this );
 		var disabled = $form.find(':input:disabled').removeAttr('disabled');
 
@@ -290,6 +299,7 @@ title: Warning Generator
 				$threat.trigger('change');
 			}
 		});
+		$btn.button('reset');
 	});
 
 </script>

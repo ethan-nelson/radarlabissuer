@@ -17,7 +17,7 @@ function PostData() {
 		document.getElementById('alertarea').innerHTML = alerthtml
 		return false;
 	}
-
+	var $btn = $('#forecasterNumberbtn').button('loading')
     var xhr;
     if (window.XMLHttpRequest) {
         xhr = new XMLHttpRequest();
@@ -89,7 +89,7 @@ $.each($('.collapse'),function(){
         <input class="form-control" id="forecasterNumber" type="text" name="forecasterNumber">
       </div>
 
-		<input class="btn btn-default" value="Review Warnings" type="submit">
+		<input class="btn btn-default" value="Review Warnings" type="submit" data-loading-text="Looking up..." name="forecasterNumberbtn" id="forecasterNumberbtn">
 	</fieldset>
 </form>
 
