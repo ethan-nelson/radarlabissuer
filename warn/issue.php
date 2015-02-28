@@ -14,13 +14,29 @@ class EstablishPDO extends PDO
     }
 }
 
-$db = new EstablishPDO;
+try {
+	$db = new EstablishPDO;
 
-if ($_SERVER['REQUEST_METHOD'] == "POST") {
+	if ($_SERVER['REQUEST_METHOD'] == "POST") {
+		$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-   $q = $db->prepare("INSERT INTO save (forecaster, textbox, label, threat, magnitude, source, expiry_time, radar_time, direction, speed, polygon) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-   $q->execute(array($_POST["forecaster"], $_POST["info"], $_POST["label"], $_POST["threat"], $_POST["magnitude"], $_POST["source"], $_POST["expirationtime"], $_POST["radartime"], $_POST["direction"], $_POST["speed"], $_POST["polygon"]));
-   echo $_POST["label"];
-};
+		try {
+			$q = $db->prepare("INSERT INTO warnings (forecaster, warningtype, threat, magnitude, source, radartime, expirationtime, direction, speed, details, polygon) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+	   		$q->execute(array($_POST["forecaster"], $_POST["type"], $_POST["threat"], $_POST["magnitude"], $_POST["source"], $_POST["radartime"], $_POST["expirationtime"], $_POST["direction"], $_POST["speed"], $_POST["details"], $_POST["polygon"]));
+			$response_array['status'] = 'success';
+			$response_array['forecaster'] = $_POST["forecaster"];
+			$response_array['warning'] = $_POST["type"];
+		} catch (PDOException $e) {
+			$response_array['status'] = 'error';
+			$response_array['msg'] = $e->getMessage();
+		}
+	};
 
+} catch (PDOException $e) {
+	$response_array['status'] = 'error';
+	$response_array['msg'] = $e->getMessage();
+}
+
+header('Content-type: application/json');
+echo json_encode($response_array);
 ?>
