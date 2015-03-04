@@ -19,15 +19,15 @@ slug: home
 	<div class="col-xs-6 column">
 
 	<div class="form-group">
-		<label for="forecaster" class="col-lg-3 control-label">Forecaster ID:</label>
-		<div class="col-lg-6">
+		<label for="forecaster" class="col-xs-3 control-label">Forecaster ID:</label>
+		<div class="col-xs-6">
 			<input type="text" class="form-control" id="forecaster" name="forecaster" autofocus required>
 		</div>
 	</div>
 
 	<div class="form-group">
-		<label for="select" class="col-lg-3 control-label">Type:</label>
-		<div class="col-lg-6">
+		<label for="select" class="col-xs-3 control-label">Type:</label>
+		<div class="col-xs-6">
 		  <select class="form-control" id="type" name="type" required>
 			<option></option>
 			<option>Severe Storm</option>
@@ -38,8 +38,8 @@ slug: home
 	</div>
 
 	<div class="form-group">
-		<label for="select" class="col-lg-3 control-label">Threat:</label>
-		<div class="col-lg-6">
+		<label for="select" class="col-xs-3 control-label">Threat:</label>
+		<div class="col-xs-6">
 		  <select class="form-control" id="threat" name="threat">
 			<option val=""></option>
 			<option>Severe Wind</option>
@@ -49,8 +49,8 @@ slug: home
 	</div>
 
 	<div class="form-group">
-		<label for="input" class="col-lg-3 control-label">Magnitude:</label>
-		<div class="col-lg-6">
+		<label for="input" class="col-xs-3 control-label">Magnitude:</label>
+		<div class="col-xs-4">
 			<div class="input-group">
 				<input type="text" class="form-control" id="magnitude" name="magnitude">
 				<div class="input-group-addon" id="magnitudeaddon"></div>
@@ -59,8 +59,8 @@ slug: home
 	</div>
 
 	<div class="form-group">
-		<label for="select" class="col-lg-3 control-label">Source:</label>
-		<div class="col-lg-6">
+		<label for="select" class="col-xs-3 control-label">Source:</label>
+		<div class="col-xs-6">
 		  <select class="form-control" id="source" name="source" required>
 			<option val=""></option>
 			<option>Dopper radar indication</option>
@@ -73,24 +73,24 @@ slug: home
 	</div>
 
 	<div class="form-group">
-		<label for="input" class="col-lg-3 control-label">Radar Time:</label>
-		<div class="input-append bootstrap-timepicker col-lg-5">
+		<label for="input" class="col-xs-3 control-label">Radar Time:</label>
+		<div class="input-append bootstrap-timepicker col-xs-6">
 			<input type="text" name="radartime" id="radartime" required>
 			<span class="add-on"><i class="glyphicon glyphicon-time"></i></span>
 		</div>
 	</div>
 
 	<div class="form-group">
-		<label for="input" class="col-lg-3 control-label">Expiration:</label>
-		<div class="input-append bootstrap-timepicker col-lg-5">
+		<label for="input" class="col-xs-3 control-label">Expiration:</label>
+		<div class="input-append bootstrap-timepicker col-xs-6">
 			<input type="text" name="expirationtime" id="expirationtime" required>
 			<span class="add-on"><i class="glyphicon glyphicon-time"></i></span>
 		</div>
 	</div>
 
 	<div class="form-group">
-		<label for="select" class="col-lg-3 control-label">Movement:</label>
-		<div class="col-lg-3">
+		<label for="select" class="col-xs-3 control-label">Movement:</label>
+		<div class="col-xs-3">
 		  <select class="form-control" id="direction" name="direction" required>
 			<option></option>
 			<option>N</option>
@@ -112,15 +112,15 @@ slug: home
 			<option>N</option>
 		  </select>
 		</div>
-		<div class="col-lg-2 input-group">
+		<div class="col-xs-2 input-group">
 			<input type="text" class="form-control" id="speed" name="speed">
 			<div class="input-group-addon">kts</div>
 		</div>
 	</div>
 
 	<div class="form-group">
-		<label for="textArea" class="col-lg-3 control-label">Details:</label>
-		<div class="col-lg-8">
+		<label for="textArea" class="col-xs-3 control-label">Details:</label>
+		<div class="col-xs-8">
 			<textarea class="form-control" rows="4" id="details" name="details"></textarea>
 		</div>
 	</div>
@@ -133,7 +133,7 @@ slug: home
 	</div>
 	<div class="row">
 	<div class="form-group">
-		<div class="col-lg-offset-5">
+		<div class="col-xs-offset-5">
 			<input class="btn btn-default" value="Reset Values" type="button" onClick="ResetData();">
 			<input class="btn btn-danger" value="Issue Warning" type="submit" id="submitter" data-loading-text='Issuing...'>
 		</div>
