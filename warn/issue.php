@@ -9,7 +9,8 @@ class EstablishPDO extends PDO
         ':host=' . $settings['database']['host'] .
         ((!empty($settings['database']['port'])) ? (';port=' . $settings['database']['port']) : '') .
         ';dbname=' . $settings['database']['dbname'];
-        
+        global $tablename;
+		$tablename = $settings['database']['table'];
         parent::__construct($dns, $settings['database']['username'], $settings['database']['password']);
     }
 }
@@ -21,7 +22,7 @@ try {
 		$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 		try {
-			$q = $db->prepare("INSERT INTO warnings (forecaster, warningtype, threat, magnitude, source, radartime, expirationtime, direction, speed, details, polygon) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+			$q = $db->prepare("INSERT INTO " . $tablename . " (forecaster, warningtype, threat, magnitude, source, radartime, expirationtime, direction, speed, details, polygon) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 	   		$q->execute(array($_POST["forecaster"], $_POST["type"], $_POST["threat"], $_POST["magnitude"], $_POST["source"], $_POST["radartime"], $_POST["expirationtime"], $_POST["direction"], $_POST["speed"], $_POST["details"], $_POST["polygon"]));
 			$response_array['status'] = 'success';
 			$response_array['forecaster'] = $_POST["forecaster"];
