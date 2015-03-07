@@ -5,8 +5,17 @@ slug: /review
 ---
 <script>
 var mapper = [];
-function LoadMap(divname) {
 
+var mapimg = L.tileLayer('/images/maptiles/{z}/{x}/{y}.png', {
+	maxZoom: 11,
+	minZoom: 7,
+	attribution: '<a href="javascript:attribution()">Map Attributions</a>'
+});
+
+function attribution(){
+  window.alert('Map data: OpenStreetMap contributors (http://openstreetmap.org).\n' +
+	'Imagery: Mapbox (http://mapbox.com).\n' +
+	'For more information, contact the project creator at ethan.nelson@users.noreply.github.com');
 }
 
 function PostData() {
@@ -41,10 +50,10 @@ function PostData() {
             if (xhr.status == 200 && xhr.status < 300) {
                 document.getElementById('everything').innerHTML = xhr.responseText;
 				var divname;
-
 				for ($x = 0; $x < document.getElementsByClassName("mapdisplay").length; $x++) {
 					divname = 'map' + $x;
-					mapper[$x] = L.map(divname).setView([0.0,0.0],10);
+					mapper[$x] = L.map(divname).setView([32.29,-90.18],7);
+					mapimg.addTo(mapper[$x]);
 					divname = 'coord' + $x;
 					jsoncoll = JSON.parse((document.getElementById(divname).innerHTML).replace(/\\/g, ''))
 					L.geoJson(jsoncoll).addTo(mapper[$x]);
@@ -52,7 +61,9 @@ function PostData() {
 
 				$('#accordian').on('shown.bs.collapse', function () {
 					for ($x = 0; $x < document.getElementsByClassName("mapdisplay").length; $x++) {
+
 						mapper[$x]._onResize();
+
 					}
 				})
             } else {

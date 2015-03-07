@@ -1,3 +1,5 @@
 _site
 .sass-cache
 *~
+/images/maptiles
+/images/2015

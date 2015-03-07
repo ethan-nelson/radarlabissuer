@@ -156,6 +156,13 @@ slug: home
 		showMeridian: false
 	});
 
+    function attribution(){
+	  window.alert('Map data: OpenStreetMap contributors (http://openstreetmap.org).\n' +
+		'Imagery: Mapbox (http://mapbox.com).\n' +
+		'For more information, contact the project creator at ethan.nelson@users.noreply.github.com');
+	}
+
+
 	var $warning = $('#type'), $magnitude = $('#magnitude'), $threat = $('#threat'), $magnitudeaddon = $('#magnitudeaddon');
 	$warning.change(function () {
 		if ($warning.val() == 'Severe Storm') {
@@ -182,7 +189,13 @@ slug: home
 		}
 	}).trigger('change');
 
-	var map = L.map('map').setView([0.0,0.0],10);
+
+    var mapimg = L.tileLayer('images/maptiles/{z}/{x}/{y}.png', {
+	    maxZoom: 11,
+	    minZoom: 7,
+	    attribution: '<a href="javascript:attribution()">Map Attributions</a>'
+    });
+	var map = L.map('map',{layers: [mapimg]}).setView([32.29,-90.18],7);
 
 	var drawnWarning = new L.FeatureGroup();
 	var polygonid = JSON.stringify(drawnWarning.toGeoJSON());
