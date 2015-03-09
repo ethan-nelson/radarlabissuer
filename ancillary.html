@@ -5,7 +5,7 @@ title: Other Observations
 <div class="container" id="ancillary">
     <div class="row">
 		<div class="col-md-2 column">
-		    <div class="panel panel-danger" style="max-width: 135px;">
+		    <div class="panel panel-danger" style="max-width: 135px;" id="obsmenu">
 				<a class="list-group-item" href="#">SPC Outlooks</a>
 				<a class="list-group-item" href="#">Radiosondes</a>
 				<div class="panel-heading">Analyses</div>
@@ -46,3 +46,10 @@ title: Other Observations
 
 </div>
 <script src="ancillary.js"></script>
+
+<script>
+$("#obsmenu a").click(function() {
+    $('a').removeClass('active');
+    $(this).addClass("active");
+});
+</script>

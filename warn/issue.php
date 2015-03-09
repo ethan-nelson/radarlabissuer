@@ -27,6 +27,7 @@ try {
 			$response_array['status'] = 'success';
 			$response_array['forecaster'] = $_POST["forecaster"];
 			$response_array['warning'] = $_POST["type"];
+			$response_array['radartime'] = $_POST["radartime"];
 		} catch (PDOException $e) {
 			$response_array['status'] = 'error';
 			$response_array['msg'] = $e->getMessage();

@@ -50,12 +50,14 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 			};
 		};
 		print "<br /><b>Source:</b> " . $row['source'];
-		print "<br /><b>Movement:</b> " .$row['direction'] . " @ " . $row['speed'] . " kts ";
+		if (!empty($row['direction'])) {
+			print "<br /><b>Movement:</b> " .$row['direction'] . " @ " . $row['speed'] . " kts ";
+		};
 		print "<br /><b>Details:</b> " .$row['details'];
 
 		print "</div>";
 		print "<div class='col-lg-6'>";
-		print "<div id='map" . $i . "' style='height: 350px; width: 500px;' class='mapdisplay'></div>";
+		print "<div id='map" . $i . "' style='height: 350px; width: 450px;' class='mapdisplay'></div>";
 		print "<div id='coord" . $i . "' style='display:none'>" . $row['polygon'] . "</div>";
 		print "</div>";
 

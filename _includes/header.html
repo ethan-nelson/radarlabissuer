@@ -15,12 +15,12 @@
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
 			{% if page.slug == 'home' %}
-				<li class="active"><a href="/">Issue a Warning</a></li>
+				<li class="active"><a href="/"><span class="glyphicon glyphicon-bell" aria-hidden="true"></span> Issue a Warning</a></li>
 			{% else %}
-            	<li><a href="/">Issue a Warning</a></li>
+            	<li><a href="/"><span class="glyphicon glyphicon-bell" aria-hidden="true"></span> Issue a Warning</a></li>
 			{% endif %}
-            <li data-active="review"><a href="/review/">View Warnings</a></li>
-			<li data-active="ancillary"><a href="/ancillary/" target="_blank">Look at Other Data</a></li>
+            <li data-active="review"><a href="/review/"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span> View Warnings</a></li>
+			<li data-active="ancillary"><a href="/ancillary/" target="_blank"><span class="glyphicon glyphicon-sunglasses" aria-hidden="true"></span> Look at Other Data</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>

@@ -4,19 +4,13 @@ title: Warning Generator
 permalink: /
 slug: home
 ---
-<script>
-
-
-
-</script>
-
 <div id="returnvalue"></div>
 <div class="well bs-component col-md-12">
 <form class="form-horizontal" id="stormwarning">
 	<fieldset>
 	<center><legend><h3>Storm Warning Issuer</h3></legend></center>
 	<div class="row">
-	<div class="col-xs-6 column">
+	<div class="col-md-6 column">
 
 	<div class="form-group">
 		<label for="forecaster" class="col-xs-3 control-label">Forecaster ID:</label>
@@ -91,7 +85,7 @@ slug: home
 	<div class="form-group">
 		<label for="select" class="col-xs-3 control-label">Movement:</label>
 		<div class="col-xs-3">
-		  <select class="form-control" id="direction" name="direction" required>
+		  <select class="form-control" id="direction" name="direction">
 			<option></option>
 			<option>N</option>
 			<option>NNE</option>
@@ -125,16 +119,19 @@ slug: home
 		</div>
 	</div>
 	</div>
-	<div class="col-xs-6 column">
+	<div class="col-md-6 column">
 		<label>Draw the warning polygon:</label>
-		<div id="map" style="height: 350px; width: 500px;" name="map"></div>
-
+		<div id="map" style="height: 400px; width: 475px;" name="map"></div>
+		<div>
+			<p class="text-muted small"><em>Map acting weird?</em> <button type="button" class="btn btn-default btn-xs" onClick="ResetMap();">
+			<span class="glyphicon glyphicon-retweet" aria-hidden="true"></span> Reset Map</button></p>
+		</div>
 	</div>
 	</div>
 	<div class="row">
 	<div class="form-group">
 		<div class="col-xs-offset-5">
-			<input class="btn btn-default" value="Reset Values" type="button" onClick="ResetData();">
+			<input class="btn btn-default" value="Reset Everything" type="button" onClick="ResetData();">
 			<input class="btn btn-danger" value="Issue Warning" type="submit" id="submitter" data-loading-text='Issuing...'>
 		</div>
 	</div>
@@ -144,15 +141,15 @@ slug: home
 </form>
 
 <script type="text/javascript">
-	$('#expirationtime').timepicker({
+	$('#radartime').timepicker({
 		minuteStep: 1,
-		defaultTime: false,
+		defaultTime: '20:00',
 		showMeridian: false
 	});
 
-	$('#radartime').timepicker({
+	$('#expirationtime').timepicker({
 		minuteStep: 1,
-		defaultTime: false,
+		defaultTime: '20:00',
 		showMeridian: false
 	});
 
@@ -191,11 +188,11 @@ slug: home
 
 
     var mapimg = L.tileLayer('images/maptiles/{z}/{x}/{y}.png', {
-	    maxZoom: 11,
-	    minZoom: 7,
+	    maxZoom: 12,
+	    minZoom: 6,
 	    attribution: '<a href="javascript:attribution()">Map Attributions</a>'
     });
-	var map = L.map('map',{layers: [mapimg]}).setView([32.29,-90.18],7);
+	var map = L.map('map',{layers: [mapimg]}).setView([32.79,-90.18],7);
 
 	var drawnWarning = new L.FeatureGroup();
 	var polygonid = JSON.stringify(drawnWarning.toGeoJSON());
@@ -254,6 +251,10 @@ slug: home
 		$warning.trigger('change');
 		$threat.trigger('change');
 
+		ResetMap();
+	};
+
+	function ResetMap() {
 		map.removeLayer(drawnWarning);
 		drawnWarning = new L.FeatureGroup();
 		polygonid = JSON.stringify(drawnWarning.toGeoJSON());
@@ -284,7 +285,6 @@ slug: home
 		map.addControl(drawControl);
 	};
 
-
 	$('#stormwarning').submit(function(e) {
 		e.preventDefault();
 		var $btn = $('#submitter').button('loading')
@@ -298,9 +298,9 @@ slug: home
 			if(data.status == 'success'){
 				responsehtml = '<div class="alert alert-dismissable alert-success">' +
 		                           '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>' +
-		    					   '<h4><i class="glyphicon glyphicon-ok"></i><strong> Storm warning issued!</strong></h4>' +
-								   'Issued with forecaster id ' + data.forecaster + ' for a ' + data.warning + '. Affected '+
-								   'cities have been notified.</div>';
+		    					   '<h4><i class="glyphicon glyphicon-ok"></i><strong> ' + data.warning + 
+									' Warning issued!</strong></h4>' + 'Issued with Forecaster ID ' + data.forecaster + 
+									' at ' + data.radartime + '. Affected cities have been notified.</div>';
 				document.getElementById('returnvalue').innerHTML = responsehtml;
 				ResetData();
 			}else if(data.status == 'error'){
