@@ -1,0 +1,66 @@
+---
+layout: page
+title: Other Observations
+---
+<style>
+.leaflet-div-icon {
+	background: transparent;
+	border: none;
+}
+ 
+.leaflet-marker-icon .number{
+	position: relative;
+	top: -37px;
+	font-size: 12px;
+	width: 25px;
+	text-align: center;
+}
+</style>
+
+<center>
+<div id="map" style="height: 750px; width: 725px;"></div>
+</center>
+
+<script src='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-omnivore/v0.2.0/leaflet-omnivore.min.js'></script>
+<script>
+    function attribution(){
+	  window.alert('Map data: OpenStreetMap contributors (http://openstreetmap.org).\n' +
+		'Imagery: Mapbox (http://mapbox.com).\n' +
+		'For more information, contact the project creator at ethan.nelson@users.noreply.github.com');
+	}
+
+    var mapimg = L.tileLayer('/images/maptiles/{z}/{x}/{y}.png', {
+	    maxZoom: 12,
+	    minZoom: 6,
+	    attribution: '<a href="javascript:attribution()">Map Attributions</a>'
+    });
+
+	var map = L.map('map',{layers: [mapimg]}).setView([32.65,-90.18],8);
+
+	var i = 1;
+
+	function onEachFeature(feature, layer) {
+		if (feature.properties && feature.properties.popupContent) {
+		    layer.bindPopup('<p>' + feature.properties.time + '</p><p>' + feature.properties.popupContent + '</p>');
+		}
+	}
+
+    function addReports(){
+	    var theLayer = new L.geoJson(null, {onEachFeature: onEachFeature});
+        var filename = '/reports.geoJSON';
+	    var includedLayer = omnivore.csv(filename,null,theLayer);
+	    includedLayer.addTo(map);
+        return theLayer;
+      }
+    function refreshReports(){
+        theLayer.clearLayers();
+        theLayer = addReports();
+      }
+    function refreshForever(){
+        setInterval(function() {refreshReports()}, 15000);
+      }
+
+    theLayer = addReports();
+    refreshForever();
+
+</script>
