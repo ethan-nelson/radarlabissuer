@@ -54,6 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 			print "<br /><b>Movement:</b> " .$row['direction'] . " @ " . $row['speed'] . " kts ";
 		};
 		print "<br /><b>Details:</b> " .$row['details'];
+		print "<br /><b>Reality date/time of issuance:</b> " .$row['timestamp'];
 
 		print "</div>";
 		print "<div class='col-lg-6'>";
