@@ -1,3 +1,12 @@
 <Files settings.ini>
 	Deny from all
 </Files>
+
+<FilesMatch "\.geoJSON$">
+  FileEtag None
+  <IfModule mod_headers.c>
+    Header unset Etag
+    Header set Cache-Control "max-age=0, no-cache, no-store, must-revalidate"
+    Header set Pragma "no-cache"
+  </IfModule>
+</FilesMatch>
