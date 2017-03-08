@@ -34,8 +34,9 @@ title: Other Observations
 	    minZoom: 6,
 	    attribution: '<a href="javascript:attribution()">Map Attributions</a>'
     });
+    var radimg = L.imageOverlay('/images/radar/latest.png',[[32.425,-100.85],[38.25,-93.75]],{opacity: 0.5});
 
-	var map = L.map('map',{layers: [mapimg]}).setView([32.65,-90.18],8);
+	var map = L.map('map',{layers: [mapimg,radimg]}).setView([35.16,-98.06],8);
 
 	var i = 1;
 
@@ -54,6 +55,10 @@ title: Other Observations
       }
     function refreshReports(){
         theLayer.clearLayers();
+        map.removeLayer(radimg);
+        imgsrc = '/images/radar/latest.png?lastmod=' + new Date().getTime();
+        radimg = new L.ImageOverlay(imgsrc,[[32.425,-100.85],[38.25,-93.75]], {opacity: 0.5});
+        map.addLayer(radimg);
         theLayer = addReports();
       }
     function refreshForever(){

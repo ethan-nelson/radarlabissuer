@@ -13,7 +13,7 @@ slug: home
 	<div class="col-md-6 column">
 
 	<div class="form-group">
-		<label for="forecaster" class="col-xs-3 control-label">Forecaster ID:</label>
+		<label for="forecaster" class="col-xs-3 control-label">Forecaster #:</label>
 		<div class="col-xs-6">
 			<input type="text" class="form-control" id="forecaster" name="forecaster" autofocus required>
 		</div>
@@ -67,9 +67,9 @@ slug: home
 	</div>
 
 	<div class="form-group">
-		<label for="input" class="col-xs-3 control-label">Radar Time:</label>
+		<label for="input" class="col-xs-3 control-label">Issue Time:</label>
 		<div class="input-append bootstrap-timepicker col-xs-6">
-			<input type="text" name="radartime" id="radartime" required>
+			<input type="text" name="radartime" id="radartime" required disabled>
 			<span class="add-on"><i class="glyphicon glyphicon-time"></i></span>
 		</div>
 	</div>
@@ -83,7 +83,7 @@ slug: home
 	</div>
 
 	<div class="form-group">
-		<label for="select" class="col-xs-3 control-label">Movement:</label>
+		<label for="select" class="col-xs-3 control-label" style="font-weight: normal !important;">Movement:</label>
 		<div class="col-xs-3">
 		  <select class="form-control" id="direction" name="direction">
 			<option></option>
@@ -120,11 +120,13 @@ slug: home
 	</div>
 	</div>
 	<div class="col-md-6 column">
+		<div id="addTime"></div>
 		<label>Draw the warning polygon:</label>
 		<div id="map" style="height: 400px; width: 475px;" name="map"></div>
 		<div>
 			<p class="text-muted small"><em>Map acting weird?</em> <button type="button" class="btn btn-default btn-xs" onClick="ResetMap();">
-			<span class="glyphicon glyphicon-retweet" aria-hidden="true"></span> Reset Map</button></p>
+			<span class="glyphicon glyphicon-retweet" aria-hidden="true"></span> Reset Map</button>
+			<button type="button" class="btn btn-default btn-xs" onClick="reloadRadar();">Refresh Radar Manually</button></p>
 		</div>
 	</div>
 	</div>
@@ -132,7 +134,7 @@ slug: home
 	<div class="form-group">
 		<div class="col-xs-offset-5">
 			<input class="btn btn-default" value="Reset Everything" type="button" onClick="ResetData();">
-			<input class="btn btn-danger" value="Issue Warning" type="submit" id="submitter" data-loading-text='Issuing...'>
+			<input class="btn btn-danger" value="Issue Warning" type="submit" id="submitter" name="submitter" data-loading-text='Issuing...' disabled>
 		</div>
 	</div>
 
@@ -160,7 +162,7 @@ slug: home
 	}
 
 
-	var $warning = $('#type'), $magnitude = $('#magnitude'), $threat = $('#threat'), $magnitudeaddon = $('#magnitudeaddon');
+	var $warning = $('#type'), $magnitude = $('#magnitude'), $threat = $('#threat'), $magnitudeaddon = $('#magnitudeaddon'), $submitter = $('#submitter');
 	$warning.change(function () {
 		if ($warning.val() == 'Severe Storm') {
 		    $magnitude.removeAttr('disabled');
@@ -192,7 +194,9 @@ slug: home
 	    minZoom: 6,
 	    attribution: '<a href="javascript:attribution()">Map Attributions</a>'
     });
-	var map = L.map('map',{layers: [mapimg]}).setView([32.79,-90.18],7);
+    var radimg = L.imageOverlay('/images/radar/latest.png',[[32.425,-100.85],[38.25,-93.75]], {opacity: 0.5});
+
+	var map = L.map('map',{layers: [mapimg,radimg]}).setView([32.79,-90.18],7);
 
 	var drawnWarning = new L.FeatureGroup();
 	var polygonid = JSON.stringify(drawnWarning.toGeoJSON());
@@ -217,6 +221,17 @@ slug: home
 		}
 	};
 
+        function reloadRadar() {
+          map.removeLayer(radimg);
+          imgsrc = '/images/radar/latest.png?lastmod=' + new Date().getTime();
+          radimg = new L.ImageOverlay(imgsrc,[[32.425,-100.85],[38.25,-93.75]], {opacity: 0.5});
+          map.addLayer(radimg);
+          radimg.bringToBack();
+        };
+
+        setInterval(reloadRadar(), 60*5*1000);
+
+
 	var drawControl = new L.Control.Draw(options);
 	var onlyeditControl = new L.Control.Draw(onlyeditoptions);
 	map.addControl(drawControl);
@@ -227,16 +242,19 @@ slug: home
 		drawControl.removeFrom(map);
 		onlyeditControl.addTo(map)
 		polygonid = JSON.stringify(drawnWarning.toGeoJSON());
+		$submitter.removeAttr('disabled');
 	});
 
 	map.on('draw:edited', function (e) {
 		polygonid = JSON.stringify(drawnWarning.toGeoJSON());
+		$submitter.attr('disabled','disabled');
 	});
 
 	map.on('draw:deleted', function (e) {
 		onlyeditControl.removeFrom(map);
 		drawControl.addTo(map);
 		polygonid = JSON.stringify(drawnWarning.toGeoJSON());
+		$submitter.attr('disabled','disabled');
 	});
 
 	function attribution(){
@@ -290,6 +308,9 @@ slug: home
 		var $btn = $('#submitter').button('loading')
 		var $form = $( this );
 		var disabled = $form.find(':input:disabled').removeAttr('disabled');
+		forecasterNumber = document.getElementById('forecaster').value;
+		radarTime = document.getElementById('radartime').value;
+		expTime = document.getElementById('expirationtime').value;
 
 		var url = '/warn/issue.php';
 		var datain = $form.serialize() + "&polygon=" + JSON.stringify(drawnWarning.toGeoJSON());
@@ -303,6 +324,10 @@ slug: home
 									' at ' + data.radartime + '. Affected cities have been notified.</div>';
 				document.getElementById('returnvalue').innerHTML = responsehtml;
 				ResetData();
+				document.getElementById('forecaster').value = forecasterNumber;
+				document.getElementById('radartime').value = radarTime;
+				document.getElementById('radartime').setAttribute('disabled','disabled');
+				document.getElementById('expirationtime').value = expTime;
 			}else if(data.status == 'error'){
 				responsehtml = '<div class="alert alert-dismissable alert-danger">' +
                 	'<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>' +
@@ -315,6 +340,24 @@ slug: home
 		});
 		$btn.button('reset');
 	});
+        function startTime() {
+                var today=new Date();
+                var h=today.getHours(today.setHours(today.getHours() + 11));
+                var m=today.getMinutes(today.setMinutes(today.getMinutes() - 30));
+                var s=today.getSeconds();
+                h = checkTime(h);
+                m = checkTime(m);
+                s = checkTime(s);
+                document.getElementById('addTime').innerHTML = "Simulation Time: " + h+":"+m+":"+s;
+                document.getElementById('radartime').value = h+":"+m;
+                var t = setTimeout(function(){startTime()},500);
+        }
 
+        function checkTime(i) {
+                if (i<10) {i = "0" + i};  // add zero in front of numbers < 10
+                return i;
+        }
+
+        window.onload = startTime();
 </script>
 </div>
