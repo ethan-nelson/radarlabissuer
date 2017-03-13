@@ -1,5 +1,3 @@
-var imgPrefix = "/images/2015/";
-
 function setImage(element) {
 	switch(element.innerHTML) {
 		case "SPC Outlooks":

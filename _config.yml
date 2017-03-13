@@ -4,6 +4,7 @@ description: >
     N.B.: This is a web app created for a university course, not an operational site.
 permalink: pretty
 github_username: ethan-nelson/radarlabissuer
+baseurl: #
 
 # Build settings
 markdown: kramdown
