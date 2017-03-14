@@ -6,14 +6,27 @@ slug: /review
 <script>
 var mapper = [];
 
+function ExpandAll() {
+  $('#accordian .panel-collapse').collapse('show');
+}
+
+function CollapseAll() {
+  $('#accordian .panel-collapse').collapse('hide');
+}
+
 function attribution(){
   window.alert('Map data: OpenStreetMap contributors (http://openstreetmap.org).\n' +
 	'Imagery: Mapbox (http://mapbox.com).\n' +
 	'For more information, contact the project creator at ethan.nelson@users.noreply.github.com');
 }
 
-function PostData() {
-	var x = document.forms["warning"]["forecasterNumber"].value;
+function PostData(y) {
+        try {
+	    var x = document.forms["warning"]["forecasterNumber"].value;
+        }
+        catch(err) {
+            var x = y;
+        }
 	if (x == null || x == "") {
 		alerthtml = '<div class="alert alert-warning" role="alert"><strong>Oh snap!</strong> ' +
 					'Please enter your forecaster number. See your TA if you do not know it.</div>';
@@ -32,8 +45,12 @@ function PostData() {
         throw new Error("Ajax is not supported by this browser");
     }
 
-
+    try {
 	var forecasternumber = document.getElementById("forecasterNumber").value;
+    }
+    catch(err) {
+        var forecasternumber = y;
+    }
 
     xhr.open('POST', '/review/retrieve.php');
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");

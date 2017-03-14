@@ -19,7 +19,7 @@ $db = new EstablishPDO;
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
-	print "<h3>Forecaster ID: " . $_POST["forecasternumber"] . "</h3>";
+	print "<h3>Forecaster ID: " . $_POST["forecasternumber"] . " - <button class='btn btn-default' onclick='PostData(" . $_POST["forecasternumber"] . ")'>Refresh</button> -- <button class='btn btn-default' onclick='ExpandAll()'>Expand all</button> -- <button class='btn btn-default' onclick='CollapseAll()'>Collapse all</button></h3>";
 	print "<div class='panel-group' id='accordian' role='tablist'>";
 	$sql = "SELECT * FROM " . $tablename . " WHERE forecaster = " . $_POST["forecasternumber"] . " ORDER BY timestamp DESC";
 	$i = 0;
