@@ -14,12 +14,6 @@ function CollapseAll() {
   $('#accordian .panel-collapse').collapse('hide');
 }
 
-function attribution(){
-  window.alert('Map data: OpenStreetMap contributors (http://openstreetmap.org).\n' +
-	'Imagery: Mapbox (http://mapbox.com).\n' +
-	'For more information, contact the project creator at ethan.nelson@users.noreply.github.com');
-}
-
 function PostData(y) {
         try {
 	    var x = document.forms["warning"]["forecasterNumber"].value;
@@ -64,7 +58,7 @@ function PostData(y) {
 				var divname;
 				for ($x = 0; $x < document.getElementsByClassName("mapdisplay").length; $x++) {
 					divname = 'map' + $x;
-					var mapimg = L.tileLayer('/images/maptiles/{z}/{x}/{y}.png', {
+					var mapimg = L.tileLayer('{{ site.mapdir }}', {
 						maxZoom: 12,
 						minZoom: 6,
 						attribution: '<a href="javascript:attribution()">Map Attributions</a>'
