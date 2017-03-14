@@ -141,7 +141,7 @@ slug: home
 	</fieldset>
 	</div>
 </form>
-
+<script src="{{ '/js/common.js' | prepend: site.baseurl }}"></script>
 <script type="text/javascript">
 	$('#radartime').timepicker({
 		minuteStep: 1,
@@ -182,8 +182,7 @@ slug: home
 		}
 	}).trigger('change');
 
-
-	var map = L.map('map',{layers: [mapimg,radimg]}).setView([32.79,-90.18],7);
+        var map = L.map('map', {layers: [mapimg, radarimg]}).setView({{ site.mapcenter}}, {{ site.mapzoom }});
 
 	var drawnWarning = new L.FeatureGroup();
 	var polygonid = JSON.stringify(drawnWarning.toGeoJSON());

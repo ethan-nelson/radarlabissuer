@@ -3,6 +3,7 @@ layout: page
 title: Review Warnings
 slug: /review
 ---
+<script src="{{ '/js/common.js' | prepend: site.baseurl }}"></script>
 <script>
 var mapper = [];
 
@@ -63,7 +64,7 @@ function PostData(y) {
 						minZoom: 6,
 						attribution: '<a href="javascript:attribution()">Map Attributions</a>'
 					});
-					mapper[$x] = L.map(divname,{layers: [mapimg]}).setView([32.29,-90.18],7);
+					mapper[$x] = L.map(divname,{layers: [mapimg]}).setView({{ site.mapcenter }}, {{ site.mapzoom }});
 					divname = 'coord' + $x;
 					jsoncoll = JSON.parse((document.getElementById(divname).innerHTML).replace(/\\/g, ''))
 					L.geoJson(jsoncoll).addTo(mapper[$x]);

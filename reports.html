@@ -20,11 +20,10 @@ title: Other Observations
 <center>
 <div id="map" style="height: 750px; width: 725px;"></div>
 </center>
-
+<script src="{{ '/js/common.js' | prepend: site.baseurl }}"></script>
 <script src="{{ '/vendor/Leaflet.omnivore/leaflet-omnivore.min.js' | prepend: site.baseurl }}"></script>
 <script>
-	var map = L.map('map',{layers: [mapimg,radimg]}).setView([35.16,-98.06],8);
-
+var map = L.map('map', {layers: [mapimg, radarimg]}).setView({{ site.mapcenter}}, {{ site.mapzoom }});
 	var i = 1;
 
 	function onEachFeature(feature, layer) {
