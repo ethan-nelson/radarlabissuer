@@ -21,3 +21,6 @@ mapzoom: 7
 # Radar image settings
 radarimg: "/images/radar/latest.png"
 radarbounds: "[[32.425, -100.85], [38.25, -93.75]]"
+
+# Storm reports
+reportsfile: "/reports.geoJSON"

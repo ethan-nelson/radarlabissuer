@@ -1,54 +1,11 @@
 ---
 layout: page
-title: Other Observations
+title: Storm Reports
 ---
-<style>
-.leaflet-div-icon {
-	background: transparent;
-	border: none;
-}
- 
-.leaflet-marker-icon .number{
-	position: relative;
-	top: -37px;
-	font-size: 12px;
-	width: 25px;
-	text-align: center;
-}
-</style>
-
 <center>
 <div id="map" style="height: 750px; width: 725px;"></div>
 </center>
-<script src="{{ '/js/common.js' | prepend: site.baseurl }}"></script>
+
 <script src="{{ '/vendor/Leaflet.omnivore/leaflet-omnivore.min.js' | prepend: site.baseurl }}"></script>
-<script>
-var map = L.map('map', {layers: [mapimg, radarimg]}).setView({{ site.mapcenter}}, {{ site.mapzoom }});
-	var i = 1;
-
-	function onEachFeature(feature, layer) {
-		if (feature.properties && feature.properties.popupContent) {
-		    layer.bindPopup('<p>' + feature.properties.time + '</p><p>' + feature.properties.popupContent + '</p>');
-		}
-	}
-
-    function addReports(){
-	    var theLayer = new L.geoJson(null, {onEachFeature: onEachFeature});
-        var filename = '/reports.geoJSON';
-	    var includedLayer = omnivore.csv(filename,null,theLayer);
-	    includedLayer.addTo(map);
-        return theLayer;
-      }
-    function refreshReports(){
-        theLayer.clearLayers();
-        reloadRadar();
-        theLayer = addReports();
-      }
-    function refreshForever(){
-        setInterval(function() {refreshReports()}, 15000);
-      }
-
-    theLayer = addReports();
-    refreshForever();
-
-</script>
+<script src="{{ '/js/common.js' | prepend: site.baseurl }}"></script>
+<script src="{{ '/js/reports.js' | prepend: site.baseurl }}"></script>
