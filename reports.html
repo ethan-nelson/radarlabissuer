@@ -21,7 +21,7 @@ title: Other Observations
 <div id="map" style="height: 750px; width: 725px;"></div>
 </center>
 
-<script src='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-omnivore/v0.2.0/leaflet-omnivore.min.js'></script>
+<script src="{{ '/vendor/Leaflet.omnivore/leaflet-omnivore.min.js' | prepend: site.baseurl }}"></script>
 <script>
     var radimg = L.imageOverlay('/images/radar/latest.png',[[32.425,-100.85],[38.25,-93.75]],{opacity: 0.5});
 
