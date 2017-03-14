@@ -24,3 +24,10 @@ radarbounds: "[[32.425, -100.85], [38.25, -93.75]]"
 
 # Storm reports
 reportsfile: "/reports.geoJSON"
+
+
+starttime: "20:00"
+endtime: "22:00"
+
+houroffset: 6
+minuteoffset: -30
