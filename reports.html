@@ -23,8 +23,6 @@ title: Other Observations
 
 <script src="{{ '/vendor/Leaflet.omnivore/leaflet-omnivore.min.js' | prepend: site.baseurl }}"></script>
 <script>
-    var radimg = L.imageOverlay('/images/radar/latest.png',[[32.425,-100.85],[38.25,-93.75]],{opacity: 0.5});
-
 	var map = L.map('map',{layers: [mapimg,radimg]}).setView([35.16,-98.06],8);
 
 	var i = 1;

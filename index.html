@@ -183,8 +183,6 @@ slug: home
 	}).trigger('change');
 
 
-    var radimg = L.imageOverlay('/images/radar/latest.png',[[32.425,-100.85],[38.25,-93.75]], {opacity: 0.5});
-
 	var map = L.map('map',{layers: [mapimg,radimg]}).setView([32.79,-90.18],7);
 
 	var drawnWarning = new L.FeatureGroup();

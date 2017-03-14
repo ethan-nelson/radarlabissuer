@@ -12,6 +12,10 @@ markdown: kramdown
 # Custom settings
 imagedir: /images/
 
-# Map settings:
+# Map settings
 mapdir: /images/maptiles/{z}/{x}/{y}.png
 attribution: "Map Data: Copyright OpenStreetMap contributors (https://osm.org)"
+
+# Radar image settings
+radarimg: "/images/radar/latest.png"
+radarbounds: "[[32.425, -100.85], [38.25, -93.75]]"
