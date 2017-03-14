@@ -14,4 +14,4 @@ imagedir: /images/
 
 # Map settings:
 mapdir: /images/maptiles/{z}/{x}/{y}.png
-attribution: "Map Data: <a href='https://www.openstreetmap.org' target='_blank'>&#169; OpenStreetMap contributors</a><br />"
+attribution: "Map Data: Copyright OpenStreetMap contributors (https://osm.org)"
