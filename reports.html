@@ -41,10 +41,7 @@ var map = L.map('map', {layers: [mapimg, radarimg]}).setView({{ site.mapcenter}}
       }
     function refreshReports(){
         theLayer.clearLayers();
-        map.removeLayer(radimg);
-        imgsrc = '/images/radar/latest.png?lastmod=' + new Date().getTime();
-        radimg = new L.ImageOverlay(imgsrc,[[32.425,-100.85],[38.25,-93.75]], {opacity: 0.5});
-        map.addLayer(radimg);
+        reloadRadar();
         theLayer = addReports();
       }
     function refreshForever(){

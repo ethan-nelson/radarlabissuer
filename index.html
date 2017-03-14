@@ -207,14 +207,6 @@ slug: home
 		}
 	};
 
-        function reloadRadar() {
-          map.removeLayer(radimg);
-          imgsrc = '/images/radar/latest.png?lastmod=' + new Date().getTime();
-          radimg = new L.ImageOverlay(imgsrc,[[32.425,-100.85],[38.25,-93.75]], {opacity: 0.5});
-          map.addLayer(radimg);
-          radimg.bringToBack();
-        };
-
         setInterval(reloadRadar(), 60*5*1000);
 
 
