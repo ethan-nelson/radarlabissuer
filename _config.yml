@@ -1,9 +1,7 @@
 # Site settings
-email: ethan.nelson@users.noreply.github.com
-description: >
-    N.B.: This is a web app created for a university course, not an operational site.
+description: N.B.: This is a web app created for a university course, not an operational site.
 permalink: pretty
-github_username: ethan-nelson/radarlabissuer
+github: ethan-nelson/radarlabissuer
 baseurl: #
 
 # Build settings
