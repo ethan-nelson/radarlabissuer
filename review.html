@@ -47,7 +47,7 @@ function PostData(y) {
         var forecasternumber = y;
     }
 
-    xhr.open('POST', '/review/retrieve.php');
+    xhr.open('POST', '{{ "/review/retrieve.php" | prepend: site.baseurl }}');
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.send("forecasternumber=" + forecasternumber);
 
