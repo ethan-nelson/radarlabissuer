@@ -1,5 +1,5 @@
 # Site settings
-description: N.B.: This is a web app created for a university course, not an operational site.
+description: N.B. This is a web app created for a university course, not an operational site.
 permalink: pretty
 github: ethan-nelson/radarlabissuer
 baseurl: #
