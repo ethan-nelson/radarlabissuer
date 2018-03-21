@@ -17,7 +17,7 @@ mapcenter: "[32.79, -90.18]"
 mapzoom: 7
 
 # Radar image settings
-radarimg: "/images/radar/latest.png"
+radarimg: "/images/radar/latest.png"  # Note this must be the _full_ path following the FQDN (so if your site sits at /issue/, include that here)
 radarbounds: "[[32.425, -100.85], [38.25, -93.75]]"
 
 # Storm reports
