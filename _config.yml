@@ -11,7 +11,7 @@ markdown: kramdown
 imagedir: /images/
 
 # Map settings
-mapdir: /images/maptiles/{z}/{x}/{y}.png
+mapdir: https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png  # Switch to your own tile source if you will have nontrivial web traffic (https://operations.osmfoundation.org/policies/tiles/)
 attribution: "Map Data: Copyright OpenStreetMap contributors (https://osm.org)"
 mapcenter: "[32.79, -90.18]"
 mapzoom: 7
