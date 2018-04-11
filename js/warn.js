@@ -55,8 +55,10 @@ function checkTime(i) {
 // Get the simulation time and display it on the page.
 function getTime() {
     var today=new Date();
-    var h=today.getHours(today.setHours(today.getHours() + {{ site.houroffset }}));
-    var m=today.getMinutes(today.setMinutes(today.getMinutes() + {{ site.minuteoffset }}));
+    today.setHours(today.getHours() + {{ site.houroffset }});
+    today.setMinutes(today.getMinutes() + {{ site.minuteoffset }});
+    var h=today.getHours();
+    var m=today.getMinutes();
     var s=today.getSeconds();
     h = checkTime(h);
     m = checkTime(m);
