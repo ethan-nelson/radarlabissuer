@@ -45,30 +45,6 @@ $threat.change(function () {
 }).trigger('change');
 
 
-// Pad time strings with a leading zero.
-function checkTime(i) {
-    if (i<10) {i = "0" + i};  // add zero in front of numbers < 10
-    return i;
-}
-
-
-// Get the simulation time and display it on the page.
-function getTime() {
-    var today=new Date();
-    today.setHours(today.getHours() + {{ site.houroffset }});
-    today.setMinutes(today.getMinutes() + {{ site.minuteoffset }});
-    var h=today.getHours();
-    var m=today.getMinutes();
-    var s=today.getSeconds();
-    h = checkTime(h);
-    m = checkTime(m);
-    s = checkTime(s);
-    document.getElementById('addTime').innerHTML = "Simulation Time: " + h+":"+m+":"+s;
-    document.getElementById('radartime').value = h+":"+m;
-    var t = setTimeout(function(){getTime()},500);
-}
-
-
 // Reset function that clears all fields and map.
 function ResetData() {
     document.getElementById("stormwarning").reset();
@@ -118,9 +94,6 @@ $('#stormwarning').submit(function(e) {
     });
     $btn.button('reset');
 });
-
-
-window.onload = getTime();
 
 
 // Map objects and functions
