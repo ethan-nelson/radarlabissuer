@@ -15,6 +15,55 @@ function CollapseAll() {
   $('#accordian .panel-collapse').collapse('hide');
 }
 
+var radarimages = ['192127.png',
+'192508.png',
+'192849.png',
+'193257.png',
+'193652.png',
+'194116.png',
+'194553.png',
+'195044.png',
+'195520.png',
+'200012.png',
+'200438.png',
+'200905.png',
+'201338.png',
+'201825.png',
+'202313.png',
+'202807.png',
+'203325.png',
+'203815.png',
+'204310.png',
+'204758.png',
+'205246.png',
+'205728.png',
+'210209.png',
+'210650.png',
+'211145.png',
+'211719.png',
+'212237.png',
+'213003.png',
+'213522.png',
+'214040.png',
+'214612.png',
+'215134.png',
+'215658.png'];
+
+
+function updateradar(y) {
+var quantity = document.getElementById('radarimage').value;
+
+for ($x = 0; $x < document.getElementsByClassName("mapdisplay").length; $x++) {
+  mapper[$x].removeLayer(radimg[$x]);
+  radimg[$x] = L.imageOverlay('/radarlabissuer/images/radar/'+radarimages[quantity],[[28.75, -87.65], [33, -78.4]], {opacity: 0.5});
+  mapper[$x].addLayer(radimg[$x]);
+  radimg[$x].bringToBack();
+}  
+document.getElementById('radarlabel').value = radarimages[quantity];
+
+};
+var radimg = [];
+
 function PostData(y) {
         try {
 	    var x = document.forms["warning"]["forecasterNumber"].value;
@@ -64,7 +113,8 @@ function PostData(y) {
 						minZoom: 6,
 						attribution: '<a href="javascript:attribution()">Map Attributions</a>'
 					});
-					mapper[$x] = L.map(divname,{layers: [mapimg]}).setView({{ site.mapcenter }}, {{ site.mapzoom }});
+                                        radimg[$x] = L.imageOverlay('/images/radar/latest.png',[[32.425,-100.85],[38.25,-93.75]], {opacity: 0.5});
+                                        mapper[$x] = L.map(divname,{layers: [mapimg,radimg[$x]]}).setView({{ site.mapcenter }}, {{ site.mapzoom }});
 					divname = 'coord' + $x;
 					jsoncoll = JSON.parse((document.getElementById(divname).innerHTML).replace(/\\/g, ''))
 					L.geoJson(jsoncoll).addTo(mapper[$x]);

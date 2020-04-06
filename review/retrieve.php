@@ -20,6 +20,7 @@ $db = new EstablishPDO;
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
 	print "<h3>Forecaster ID: " . $_POST["forecasternumber"] . " - <button class='btn btn-default' onclick='PostData(" . $_POST["forecasternumber"] . ")'>Refresh</button> -- <button class='btn btn-default' onclick='ExpandAll()'>Expand all</button> -- <button class='btn btn-default' onclick='CollapseAll()'>Collapse all</button></h3>";
+        print "<input id='radarimage' type='range' min='0' max='22' value='22' onmousemove='updateradar();' onchange='updateradar();'>Radar time: <input type='text' id='radarlabel' size='11' value='' readonly='true'></h3>";
 	print "<div class='panel-group' id='accordian' role='tablist'>";
 	$sql = "SELECT * FROM " . $tablename . " WHERE forecaster = " . $_POST["forecasternumber"] . " ORDER BY timestamp DESC";
 	$i = 0;
