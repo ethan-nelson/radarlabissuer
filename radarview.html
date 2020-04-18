@@ -1,0 +1,60 @@
+---
+layout: page
+title: Radar View
+---
+<center>
+<div class="row">
+<input type="checkbox" id="synctime" />
+<label for="synctime">Sync Time in Windows</label>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="checkbox" id="synctilt" />
+<label for="synctilt">Sync Tilt in Windows</label>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="checkbox" id="syncpan" />
+<label for="syncpan">Sync Panning/Zooming in Windows</label>
+</div>
+
+<br />
+<div class="row" style="display: flex; justify-content: center;">
+<div>
+<div>
+<input class="btn btn-default active" value="Z" type="button" data-toggle="button" />
+<input class="btn btn-default" value="V" type="button" data-toggle="button" />
+<input class="btn btn-default" value="Zdr" type="button" data-toggle="button" />
+<input class="btn btn-default" value="sigma" type="button" data-toggle="button" />
+<label> Tilt:</label>
+<input class="btn btn-default" value="-" type="button" />
+<input min="0" max="4" type="range" style="width: 60px; display: inline !important;" />
+<input class="btn btn-default" value="+" type="button" />
+<label> Time:</label>
+<input class="btn btn-default" value="-" type="button" />
+<input min="-4" max="0" type="range" style="width: 60px; display: inline !important;" />
+<input class="btn btn-default" value="+" type="button" />
+</div>
+<div id="map" style="height: 750px; width: 525px;"></div>
+</div>
+<div style="width: 20px;"></div>
+<div>
+<div>
+<input class="btn btn-default active" value="Z" type="button" data-toggle="button" />
+<input class="btn btn-default" value="V" type="button" data-toggle="button" />
+<input class="btn btn-default" value="Zdr" type="button" data-toggle="button" />
+<input class="btn btn-default" value="sigma" type="button" data-toggle="button" />
+<label> Tilt:</label>
+<input class="btn btn-default" value="-" type="button" />
+<input min="0" max="4" type="range" style="width: 60px; display: inline !important;" />
+<input class="btn btn-default" value="+" type="button" />
+<label> Time:</label>
+<input class="btn btn-default" value="-" type="button" />
+<input min="-4" max="0" type="range" style="width: 60px; display: inline !important;" />
+<input class="btn btn-default" value="+" type="button" />
+</div>
+<div id="map2" style="height: 750px; width: 525px;"></div>
+</div>
+
+</div>
+</center>
+
+<script src="{{ '/vendor/Leaflet.omnivore/leaflet-omnivore.min.js' | prepend: site.baseurl }}"></script>
+<script src="{{ '/js/common.js' | prepend: site.baseurl }}"></script>
+<script src="{{ '/js/radarview.js' | prepend: site.baseurl }}"></script>

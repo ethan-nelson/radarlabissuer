@@ -11,6 +11,7 @@ function attribution () {};
 {% endif %}
 
 var mapimg = L.tileLayer('{{ site.mapdir }}', {maxZoom: 12, minZoom: 6, attribution: '<a href="javascript: attribution()">Map Attributions</a>'});
+var mapimg2 = L.tileLayer('{{ site.mapdir }}', {maxZoom: 12, minZoom: 6, attribution: '<a href="javascript: attribution()">Map Attributions</a>'});
 
 var radarimg = L.imageOverlay('{{ site.radarimg }}', {{ site.radarbounds }}, {opacity: 0.5});
 
