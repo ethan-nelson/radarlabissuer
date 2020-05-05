@@ -23,7 +23,7 @@ function setImage(element) {
 			break;
 		case "Surface":
 			removeTabs();
-			var loadsrc = imgPrefix + "surface/18.gif";
+			var loadsrc = imgPrefix + "obs/surface/19.png";
 			loadImage(loadsrc);
 			break;
 		case "Visible":
@@ -60,7 +60,7 @@ function loadTabs(category) {
 				  		'<li><a href="#" data-toggle="tab" id="tor">Tornado</a></li>' +
 				  		'<li><a href="#" data-toggle="tab" id="hail">Hail</a></li>' +
 				  		'<li><a href="#" data-toggle="tab" id="wind">Wind</a></li>' +
-				  		'<li><a href="#" data-toggle="tab" id="disc">Mesoscale Discussion</a></li>' +
+				  		'<li><a href="#" data-toggle="tab" id="disc1">Mesoscale Discussion 1</a></li>' +
 					'</ul>'
 			);
 			$("#tabArea").find("a").each(function(i, element) {
@@ -72,8 +72,8 @@ function loadTabs(category) {
 			removeTabs();
 			$("#tabArea").html( '' +
 						'<ul class="nav nav-tabs" style="margin-bottom: 15px;">' +
-				  		'<li><a href="#" data-toggle="tab" id="jan">JAN</a></li>' +
-				  		'<li><a href="#" data-toggle="tab" id="lix">LIX</a></li>' +
+                                                '<li><a href="#" data-toggle="tab" id="18Z">DDC 18Z</a></li>' +
+				  		'<li><a href="#" data-toggle="tab" id="00Z">OUN 00Z</a></li>' +
 					'</ul>'
 			);
 			$("#tabArea").find("a").each(function(i, element) {
@@ -81,21 +81,38 @@ function loadTabs(category) {
 				element.setAttribute('onclick', loadcall);
 			});
 			break;
+                case "1kmv":
+                        removeTabs();
+                        $("#tabArea").html( '' +
+                                                '<ul class="nav nav-tabs" style="margin-bottom: 15px;">' +
+                                                '<li><a href="#" data-toggle="tab">1859 Z</a></li>' +
+                                                '<li><a href="#" data-toggle="tab">1959 Z</a></li>' +
+                                                '<li><a href="#" data-toggle="tab">2045 Z</a></li>' +
+                                                '<li><a href="#" data-toggle="tab">2159 Z</a></li>' +
+                                                '<li><a href="#" data-toggle="tab">2259 Z</a></li>' +
+                                                '<li><a href="#" data-toggle="tab">2345 Z</a></li>' +
+                                                '<li><a href="#" data-toggle="tab">0100 Z</a></li>' +
+                                        '</ul>'
+                        );
+                        $("#tabArea").find("a").each(function(i, element) {
+                                var loadcall = "loadImage('" + imgPrefix + "/obs/" + category + "/" + category + "_" + element.innerHTML.substring(0,2) + "00UTC_24may2016.gif')";
+                                element.setAttribute('onclick', loadcall);
+                        });
+                        break;
 		default:
 			removeTabs();
 			$("#tabArea").html( '' +
 						'<ul class="nav nav-tabs" style="margin-bottom: 15px;">' +
-				  		'<li><a href="#" data-toggle="tab">16 Z</a></li>' +
-				  		'<li><a href="#" data-toggle="tab">17 Z</a></li>' +
-				  		'<li><a href="#" data-toggle="tab">18 Z</a></li>' +
-				  		'<li><a href="#" data-toggle="tab">19 Z</a></li>' +
-				  		'<li><a href="#" data-toggle="tab">20 Z</a></li>' +
-				  		'<li><a href="#" data-toggle="tab">21 Z</a></li>' +
-				  		'<li><a href="#" data-toggle="tab">22 Z</a></li>' +
+                                                '<li><a href="#" data-toggle="tab">18 Z</a></li>' +
+                                                '<li><a href="#" data-toggle="tab">19 Z</a></li>' +
+                                                '<li><a href="#" data-toggle="tab">20 Z</a></li>' +
+                                                '<li><a href="#" data-toggle="tab">21 Z</a></li>' +
+                                                '<li><a href="#" data-toggle="tab">22 Z</a></li>' +
+				  		'<li><a href="#" data-toggle="tab">23 Z</a></li>' +
 					'</ul>'
 			);
 			$("#tabArea").find("a").each(function(i, element) {
-				var loadcall = "loadImage('" + imgPrefix + category + "/" + element.innerHTML.substring(0,2) + "_" + category + ".gif')";
+				var loadcall = "loadImage('" + imgPrefix + "/obs/" + category + "/" + category + "_" + element.innerHTML.substring(0,2) + "00UTC_24may2016.gif')";
 				element.setAttribute('onclick', loadcall);
 			});
 			break;
@@ -110,6 +127,11 @@ function removeTabs() {
 function loadImage(src) {
 	console.log(src)
 	$("#image").attr("src", src);
+};
+
+function loadVideo(src) {
+        console.log(src)
+        $("#video").attr("src", src);
 };
 
 $("#ancillary").find("a").each(function(i, element) {
