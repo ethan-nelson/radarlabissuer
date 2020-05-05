@@ -49,17 +49,37 @@ var radarimages = ['192127.png',
 '215134.png',
 '215658.png'];
 
+var delayedTimes = {
+    '233506': '23:35:06Z',
+    '234130': '23:41:30Z',
+    '234827': '23:48:27Z',
+    '235524': '23:55:24Z',
+    '000221': '00:02:21Z',
+    '000853': '00:11:53Z',
+    '001527': '00:22:27Z',
+    '002153': '00:33:53Z',
+    '002830': '00:44:30Z',
+    '003453': '00:55:53Z',
+    '004137': '01:06:37Z',
+    '004833': '01:17:33Z',
+    '005520': '01:28:20Z',
+    '010215': '01:39:15Z',
+    '010910': '01:50:10Z',
+};
+
+
 
 function updateradar(y) {
 var quantity = document.getElementById('radarimage').value;
 
 for ($x = 0; $x < document.getElementsByClassName("mapdisplay").length; $x++) {
   mapper[$x].removeLayer(radimg[$x]);
-  radimg[$x] = L.imageOverlay('/radarlabissuer/images/radar/'+radarimages[quantity],[[28.75, -87.65], [33, -78.4]], {opacity: 0.5});
+  currentFile = getFile('reflectivity', '0.5', radarKeys[quantity]);
+  radimg[$x] = L.imageOverlay(currentFile, {{ site.radarbounds }}, {opacity: 0.5});
   mapper[$x].addLayer(radimg[$x]);
   radimg[$x].bringToBack();
 }  
-document.getElementById('radarlabel').value = radarimages[quantity];
+document.getElementById('radarlabel').value = delayedTimes[radarKeys[quantity]];
 
 };
 var radimg = [];
@@ -114,7 +134,7 @@ function PostData(y) {
 						attribution: '<a href="javascript:attribution()">Map Attributions</a>'
 					});
                                         radimg[$x] = L.imageOverlay('/images/radar/latest.png',[[32.425,-100.85],[38.25,-93.75]], {opacity: 0.5});
-                                        mapper[$x] = L.map(divname,{layers: [mapimg,radimg[$x]]}).setView({{ site.mapcenter }}, {{ site.mapzoom }});
+					mapper[$x] = L.map(divname,{layers: [mapimg,radimg[$x]]}).setView({{ site.mapcenter }}, {{ site.mapzoom }});
 					divname = 'coord' + $x;
 					jsoncoll = JSON.parse((document.getElementById(divname).innerHTML).replace(/\\/g, ''))
 					L.geoJson(jsoncoll).addTo(mapper[$x]);
