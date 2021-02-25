@@ -1,18 +1,20 @@
 ---
+# This wraps all page content within the default template. Besides
+#  adding additional styling classes, this template includes a
+#  javascript snippet that highlights the navbar entry of the 
+#  current page.
+
 layout: default
 ---
 <div class="post">
-
   <article class="post-content">
     {{ content }}
   </article>
-
-<script>
-      $('[data-active]').each(function(i,el) {
+  <script>
+    $('[data-active]').each(function(i,el) {
         var active = new RegExp($(this).data('active'));
         if (active.test(location.pathname))
-          $(this).addClass('active');
-      });
-</script>
-
+            $(this).addClass('active');
+    });
+  </script>
 </div>
