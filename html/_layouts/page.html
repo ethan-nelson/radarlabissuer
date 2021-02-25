@@ -13,8 +13,9 @@ layout: default
   <script>
     $('[data-active]').each(function(i,el) {
         var active = new RegExp($(this).data('active'));
-        if (active.test(location.pathname))
+	if (active.test(location.pathname)) {
             $(this).addClass('active');
+        }
     });
   </script>
 </div>
