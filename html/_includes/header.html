@@ -1,31 +1,44 @@
-<header class="site-header">
-
-    <!-- Fixed navbar -->
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="{{ site.baseurl }}">Warning Generator</a>
+    <header class="site-header">
+      <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="{{ site.baseurl }}">Warning Generator</a>
+          </div>
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+              <li{% if page.slug == 'home' %} class="active"{% endif %}>
+                <a href="{{ site.baseurl }}">
+                  <span class="glyphicon glyphicon-bell" aria-hidden="true"></span>&nbsp;Issue a Warning
+                </a>
+              </li>
+              <li data-active="radarview">
+                <a href="{{ '/radarview/' | prepend: site.baseurl }}">
+                  <span class="glyphicon glyphicon-cd" aria-hidden="true"></span>&nbsp;View Radar
+                </a>
+              </li>
+              <li data-active="review">
+                <a href="{{ '/review/' | prepend: site.baseurl }}">
+                  <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>&nbsp;View Warnings
+                </a>
+              </li>
+              <li data-active="reports">
+                <a href="{{ '/reports/' | prepend: site.baseurl }}">
+                  <span class="glyphicon glyphicon-cloud" aria-hidden="true"></span>&nbsp;View Storm Reports
+                </a>
+              </li>
+              <li data-active="ancillary">
+                <a href="{{ '/ancillary/' | prepend: site.baseurl }}" target="_blank">
+                  <span class="glyphicon glyphicon-sunglasses" aria-hidden="true"></span>&nbsp;Look at Other Data
+                </a>
+              </li>
+            </ul>
+          </div>
         </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-			{% if page.slug == 'home' %}
-				<li class="active"><a href="{{ site.baseurl }}"><span class="glyphicon glyphicon-bell" aria-hidden="true"></span> Issue a Warning</a></li>
-			{% else %}
-            	<li><a href="{{ site.baseurl }}"><span class="glyphicon glyphicon-bell" aria-hidden="true"></span> Issue a Warning</a></li>
-			{% endif %}
-                        <li data-active="radarview"><a href="{{ '/radarview/' | prepend: site.baseurl }}"><span class="glyphicon glyphicon-cd" aria-hidden="true"></span> View Radar</a></li>
-            <li data-active="review"><a href="{{ '/review/' | prepend: site.baseurl }}"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span> View Warnings</a></li>
-			<li data-active="reports"><a href="{{ '/reports/' | prepend: site.baseurl }}"><span class="glyphicon glyphicon-cloud" aria-hidden="true"></span> View Storm Reports</a></li>
-			<li data-active="ancillary"><a href="{{ '/ancillary/' | prepend: site.baseurl }}" target="_blank"><span class="glyphicon glyphicon-sunglasses" aria-hidden="true"></span> Look at Other Data</a></li>
-          </ul>
-        </div><!--/.nav-collapse -->
-      </div>
-    </nav>
-
-</header>
+      </nav>
+    </header>
