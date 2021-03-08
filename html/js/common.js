@@ -35,8 +35,8 @@ for (var key in radarTimes) {
     radarKeys.push(key);
 }
 
-var hourOffset = 7;
-var minuteOffset = 45;
+var hourOffset = {{ site.houroffset }};
+var minuteOffset = {{ site.minuteoffset }};
 var availableTimes = radarKeys.slice(0,4);
 var sliderTimes = [];
 var latestTime = radarKeys[0];
