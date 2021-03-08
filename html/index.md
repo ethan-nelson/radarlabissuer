@@ -6,8 +6,8 @@ slug: home
 <div id="returnvalue"></div>
 <div class="well bs-component col-md-12">
 <form class="form-horizontal" id="stormwarning">
-	<fieldset>
-	<center><legend><h3>Storm Warning Issuer</h3></legend></center>
+    <fieldset>
+        <center><legend><h3>Storm Warning Issuer</h3></legend></center>
 	<div class="row">
 	<div class="col-md-6 column">
 
@@ -136,9 +136,8 @@ slug: home
 			<input class="btn btn-danger" value="Issue Warning" type="submit" id="submitter" name="submitter" data-loading-text='Issuing...' disabled>
 		</div>
 	</div>
-
-	</fieldset>
-	</div>
+        </fieldset>
+    </div>
 </form>
 
 <script src="{{ '/vendor/Bootstrap/js/bootstrap-timepicker.js' | prepend: site.baseurl }}"></script>
