@@ -210,6 +210,7 @@ map1.on('moveend', follow).on('zoomend', follow);
 map2.on('moveend', follow).on('zoomend', follow);
 
 initializeProducts();
+document.getElementById('syncpan').checked = true;
 
 window.onload = getTime();
 reloadLayers();
