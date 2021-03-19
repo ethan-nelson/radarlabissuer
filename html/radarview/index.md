@@ -35,7 +35,7 @@ title: Radar View
 <input min="0" max="0" type="range" style="width: 60px; display: inline !important;" id='time1' onChange="syncTime('time1', 'time2');" />
 <input class="btn btn-default" value="+" type="button" onClick="addTime('time1'); syncTime('time1', 'time2'); switchImage('map1');" />
 </div>
-<div id="map1Time"></div>
+<div><span id="map1Time"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span>Cursor: <span id="latlon1">LAT/LON</span></span></div>
 <div id="map1" style="height: 550px; width: 525px;"></div>
 </div>
 
@@ -56,7 +56,7 @@ title: Radar View
 <input min="0" max="0" type="range" style="width: 60px; display: inline !important;" id='time2' onChange="syncTime('time2', 'time1');" />
 <input class="btn btn-default" value="+" type="button" onClick="addTime('time2'); syncTime('time2', 'time1'); switchImage('map2');" />
 </div>
-<div id="map2Time"></div>
+<div><span id="map2Time"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span>Cursor: <span id="latlon2">LAT/LON</span></span></div>
 <div id="map2" style="height: 550px; width: 525px;"></div>
 </div>
 
