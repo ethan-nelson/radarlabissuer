@@ -2,6 +2,15 @@
 ---
 var map = L.map('map', {layers: [mapimg, radarimg]}).setView({{ site.mapcenter}}, {{ site.mapzoom }});
 
+// Add cursor coordinates above map
+latlontext = document.getElementById('latlon');
+map.on('mousemove', function(e) {
+  latlontext.innerHTML = e.latlng.lat.toFixed(3) + '*N, ' + e.latlng.lng.toFixed(3) + '*E';
+});
+map.on('mouseleave', function(e) {
+  latlontext.innerHTML = '';
+});
+
 $('#radartime').timepicker({
     minuteStep: 1,
     defaultTime: '{{ site.starttime }}',

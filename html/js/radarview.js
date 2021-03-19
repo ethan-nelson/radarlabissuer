@@ -188,6 +188,24 @@ var map1 = L.map('map1', {layers: [mapimg]}).setView({{ site.mapcenter}}, {{ sit
 
 var map2 = L.map('map2', {layers: [mapimg2]}).setView({{ site.mapcenter}}, {{ site.mapzoom }});
 
+// Add cursor coordinates above maps
+latlon1text = document.getElementById('latlon1');
+latlon2text = document.getElementById('latlon2');
+map1.on('mousemove', function(e) {
+  latlon1text.innerHTML = e.latlng.lat.toFixed(3) + '*N, ' + e.latlng.lng.toFixed(3) + '*E';
+});
+map2.on('mousemove', function(e) {
+  latlon2text.innerHTML = e.latlng.lat.toFixed(3) + '*N, ' + e.latlng.lng.toFixed(3) + '*E';
+});
+map1.on('mouseleave', function(e) {
+  latlon1text.innerHTML = '';
+});
+map2.on('mouseleave', function(e) {
+  latlon2text.innerHTML = '';
+});
+latlon1text.innerHTML = '';
+latlon2text.innerHTML = '';
+
 map1.on('moveend', follow).on('zoomend', follow);
 map2.on('moveend', follow).on('zoomend', follow);
 

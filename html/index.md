@@ -120,7 +120,7 @@ slug: home
 	</div>
 	<div class="col-md-6 column">
 		<div id="addTime"></div>
-		<label>Draw the warning polygon:</label>
+		<label>Draw the warning polygon</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span>Cursor: <span id="latlon">LAT/LON</span></span></p>
 		<div id="map" style="height: 400px; width: 475px;" name="map"></div>
 		<div>
 			<p class="text-muted small"><em>Map acting weird?</em> <button type="button" class="btn btn-default btn-xs" onClick="ResetMap();">

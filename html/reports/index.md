@@ -3,7 +3,7 @@ layout: page
 title: Storm Reports
 ---
 <center>
-<div id="addTime"></div>
+<div><span id="addTime"></span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span>Cursor: <span id="latlon">LAT/LON</span></span></div>
 <div id="map" style="height: 750px; width: 725px;"></div>
 </center>
 
