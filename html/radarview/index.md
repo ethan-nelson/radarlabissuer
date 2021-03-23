@@ -26,6 +26,7 @@ title: Radar View
 <input class="btn btn-default" id='map1V' value="V" type="button" data-toggle="button" onClick="switchProduct('map1', 'velocity');" />
 <input class="btn btn-default" id='map1Zdr' value="Zdr" type="button" data-toggle="button" onClick="switchProduct('map1', 'differential_reflectivity');" />
 <input class="btn btn-default" id='map1sigma' value="CC" type="button" data-toggle="button" onClick="switchProduct('map1', 'cross_correlation_ratio');" />
+<input class="btn btn-default" id='map1Kdp' value="Kdp" type="button" data-toggle="button" onClick="switchProduct('map1', 'specific_differential_phase');" />
 <label> Tilt:</label>
 <input class="btn btn-default" value="-" type="button" onClick="subTilt('tilt1'); syncTilt('tilt1', 'tilt2'); switchImage('map1');" />
 <input min="0" max="4" value="0" type="range" style="width: 60px; display: inline !important;" id='tilt1' onChange="syncTilt('tilt1', 'tilt2');" />
@@ -47,6 +48,7 @@ title: Radar View
 <input class="btn btn-default" id='map2V' value="V" type="button" data-toggle="button" onClick="switchProduct('map2', 'velocity');" />
 <input class="btn btn-default" id='map2Zdr' value="Zdr" type="button" data-toggle="button" onClick="switchProduct('map2', 'differential_reflectivity');" />
 <input class="btn btn-default" id='map2sigma' value="CC" type="button" data-toggle="button" onClick="switchProduct('map2', 'cross_correlation_ratio');" />
+<input class="btn btn-default" id='map2Kdp' value="Kdp" type="button" data-toggle="button" onClick="switchProduct('map2', 'specific_differential_phase');" />
 <label> Tilt:</label>
 <input class="btn btn-default" value="-" type="button" onClick="subTilt('tilt2'); syncTilt('tilt2', 'tilt1'); switchImage('map2');" />
 <input min="0" max="4" value="0" type="range" style="width: 60px; display: inline !important;" id='tilt2' onChange="syncTilt('tilt2', 'tilt1');" />
