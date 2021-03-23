@@ -169,7 +169,7 @@ function initializeProducts() {
 function switchProduct(inmap, product) {
     if (inmap === 'map1') {
         map1.removeLayer(map1Layer);
-        for (var i = 0; i < 4; i++) {
+        for (var i = 0; i < 5; i++) {
             map1Buttons[i].classList.remove('active');
         }
         map1Layer = new L.ImageOverlay(getFile(product, getSelectedTilt('tilt1'), getSelectedTime('time1')), {{ site.radarbounds }}, {opacity: 0.5});
@@ -177,7 +177,7 @@ function switchProduct(inmap, product) {
         map1.addLayer(map1Layer);
     } else {
         map2.removeLayer(map2Layer);
-        for (var i=0; i < 4; i++) {
+        for (var i=0; i < 5; i++) {
             map2Buttons[i].classList.remove('active');
         }
         map2Layer = new L.ImageOverlay(getFile(product, getSelectedTilt('tilt2'), getSelectedTime('time2')), {{ site.radarbounds }}, {opacity: 0.5});
