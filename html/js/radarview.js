@@ -54,6 +54,37 @@ function refreshForever() {
     setInterval(function() {reloadLayers()}, 15000);
 }
 
+// Create map legends
+var map1Legends = {
+    'reflectivity':               new L.control({position: 'bottomleft'}),
+    'velocity':                   new L.control({position: 'bottomleft'}),
+    'cross_correlation_ratio':    new L.control({position: 'bottomleft'}),
+    'differential_phase':         new L.control({position: 'bottomleft'}),
+    'differential_reflectivity':  new L.control({position: 'bottomleft'})
+};
+var map2Legends = {
+    'reflectivity':               new L.control({position: 'bottomleft'}),
+    'velocity':                   new L.control({position: 'bottomleft'}),
+    'cross_correlation_ratio':    new L.control({position: 'bottomleft'}),
+    'differential_phase':         new L.control({position: 'bottomleft'}),
+    'differential_reflectivity':  new L.control({position: 'bottomleft'})
+};
+for (key in map1Legends) {
+    map1Legends[key].onAdd = function(map){
+        var div = L.DomUtil.create('div', 'info legend');
+        div.innerHTML += "<img src='" + imgPrefix + "/legend/" + key + "' alt='" + key + " legend' height='150'>";
+        return div;
+    };
+};
+for (key in map2Legends) {
+    map2Legends[key].onAdd = function(map){
+        var div = L.DomUtil.create('div', 'info legend');
+        div.innerHTML += "<img src='" + imgPrefix + "/legend/" + key + "' alt='" + key + " legend' height='150'>";
+        return div;
+    };
+};
+
+
 var times = {'time1': document.getElementById('time1'),
              'time2': document.getElementById('time2')};
 var tilts = {'tilt1': document.getElementById('tilt1'),
@@ -160,14 +191,18 @@ function initializeProducts() {
     map1Product = 'reflectivity';
     map1Layer.addTo(map1);
     map1Buttons[0].classList.add('active');
+    map1Legends['reflectivity'].addTo(map1);
+
     map2Layer = new L.ImageOverlay(getFile('velocity', '0.5', 'latest'), {{ site.radarbounds }}, {opacity: 0.5});
     map2Product = 'velocity';
     map2Layer.addTo(map2);
     map2Buttons[1].classList.add('active');
+    map2Legends['reflectivity'].addTo(map2);
 }
 
 function switchProduct(inmap, product) {
     if (inmap === 'map1') {
+        map1Legends[map1Product].removeFrom(map1);
         map1.removeLayer(map1Layer);
         for (var i = 0; i < 5; i++) {
             map1Buttons[i].classList.remove('active');
@@ -175,7 +210,9 @@ function switchProduct(inmap, product) {
         map1Layer = new L.ImageOverlay(getFile(product, getSelectedTilt('tilt1'), getSelectedTime('time1')), {{ site.radarbounds }}, {opacity: 0.5});
         map1Product = product;
         map1.addLayer(map1Layer);
+        map1Legends[map1Product].addTo(map1);
     } else {
+        map2Legends[map2Product].removeFrom(map2);
         map2.removeLayer(map2Layer);
         for (var i=0; i < 5; i++) {
             map2Buttons[i].classList.remove('active');
@@ -183,6 +220,7 @@ function switchProduct(inmap, product) {
         map2Layer = new L.ImageOverlay(getFile(product, getSelectedTilt('tilt2'), getSelectedTime('time2')), {{ site.radarbounds }}, {opacity: 0.5});
         map2Product = product;
         map2.addLayer(map2Layer);
+        map2Legends[map2Product].addTo(map2);
     }
 }
 
