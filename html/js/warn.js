@@ -11,6 +11,16 @@ map.on('mouseleave', function(e) {
   latlontext.innerHTML = '';
 });
 
+// Add reflectivity legend
+var reflegend = L.control({position: 'bottomleft'});
+reflegend.onAdd = function (map){
+  var div = L.DomUtil.create('div','info legend');
+  div.innerHTML += "<img src='" + imgPrefix + "/legend/reflectivity.png' alt='Reflectivity legend' height='150'>";
+  return div;
+};
+reflegend.addTo(map);
+
+
 $('#radartime').timepicker({
     minuteStep: 1,
     defaultTime: '{{ site.starttime }}',
