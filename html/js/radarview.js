@@ -61,11 +61,13 @@ var tilts = {'tilt1': document.getElementById('tilt1'),
 var map1Buttons = [document.getElementById('map1Z'),
                   document.getElementById('map1V'),
                   document.getElementById('map1Zdr'),
-                  document.getElementById('map1sigma')];
+                  document.getElementById('map1sigma'),
+                  document.getElementById('map1Kdp')];
 var map2Buttons = [document.getElementById('map2Z'),
                    document.getElementById('map2V'),
                    document.getElementById('map2Zdr'),
-                   document.getElementById('map2sigma')];
+                   document.getElementById('map2sigma'),
+                   document.getElementById('map2Kdp')];
 
 // Decrement
 function subTilt(element) {
